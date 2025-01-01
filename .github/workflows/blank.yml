@@ -34,4 +34,4 @@ jobs:
 
     - name: Upload file to rclone mount
       run: |
-        rclone copy /tmp/jellyfin_backup.zip w1928440:bkp
+        rclone copy /tmp/jellyfin_backup.zip w1928440:bkp --drive-chunk-size 256M --retries 3 --low-level-retries 10
