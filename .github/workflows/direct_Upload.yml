@@ -2,8 +2,7 @@ name: Rclone Workflow Upload
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # This cron expression schedules the workflow to run daily at midnight UTC
-
+    - cron: '30 10 * * *'  # This cron expression schedules the workflow to run daily at 10:30 AM UTC (4 PM IST)
 jobs:
   rclone-job-Upload:
     runs-on: ubuntu-latest
