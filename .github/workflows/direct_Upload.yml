@@ -31,3 +31,14 @@ jobs:
       run: |
         rclone moveto w1928440:Jellyfin_BKP/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup_$(date +%Y-%m-%d).zip
         rclone copyurl --drive-upload-cutoff 1000T https://download.vflix.xyz/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup.zip
+
+    - name: Send Telegram notification
+      env:
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+      run: |
+        MESSAGE="Backup completed successfully on Rclone $(date +%Y-%m-%d)"
+        curl -s -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -d chat_id="${CHANNEL_ID}" \
+            -d text="${MESSAGE}" \
+            -d parse_mode="Markdown"
