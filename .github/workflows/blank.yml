@@ -19,8 +19,8 @@ jobs:
 
     - name: Create rclone.conf
       run: |
-        mkdir -p /root/.config/rclone
-        sudo cat <<EOF > /root/.config/rclone/rclone.conf
+        mkdir -p ~/.config/rclone
+        cat <<EOF > ~/.config/rclone/rclone.conf
         [w1928440]
         type = drive
         scope = drive
