@@ -28,6 +28,6 @@ jobs:
         team_drive = 
         EOF
 
-   - name: Upload file directly from URL to rclone mount
+    - name: Upload file directly from URL to rclone mount
       run: |
         rclone copyurl https://download.vflix.xyz/jellyfin_backup.zip w1928440:bkp/jellyfin_backup.zip
