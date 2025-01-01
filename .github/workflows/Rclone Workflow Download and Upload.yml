@@ -1,4 +1,4 @@
-name: Rclone Workflow
+name: Rclone Workflow Download and Upload
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  rclone-job:
+  rclone-job-D-U:
     runs-on: ubuntu-latest
 
     steps:
