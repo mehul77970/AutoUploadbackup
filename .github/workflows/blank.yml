@@ -30,8 +30,8 @@ jobs:
 
     - name: Download file from URL
       run: |
-        curl -o /tmp/STRM.zip https://download.vflix.xyz/STRM.zip
+        curl -o /tmp/jellyfin_backup.zip https://download.vflix.xyz/jellyfin_backup.zip
 
     - name: Upload file to rclone mount
       run: |
-        rclone copy /tmp/STRM.zip w1928440:bkp
+        rclone copy /tmp/jellyfin_backup.zip w1928440:bkp
