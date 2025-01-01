@@ -1,4 +1,4 @@
-name: Rclone Workflow
+name: Rclone Workflow Upload
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  rclone-job:
+  rclone-job-Upload:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,4 +30,4 @@ jobs:
 
     - name: Upload file directly from URL to rclone mount
       run: |
-        rclone copyurl https://download.vflix.xyz/jellyfin_backup.zip w1928440:bkp/jellyfin_backup.zip --drive-chunk-size 256M --retries 3 --low-level-retries 10
+        rclone copyurl --drive-upload-cutoff 1000T https://download.vflix.xyz/jellyfin_backup.zip w1928440:bkp/jellyfin_backup.zip
