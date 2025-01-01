@@ -30,4 +30,5 @@ jobs:
 
     - name: Upload file directly from URL to rclone mount
       run: |
-        rclone copyurl --drive-upload-cutoff 1000T https://download.vflix.xyz/jellyfin_backup.zip w1928440:bkp/jellyfin_backup.zip
+        rclone moveto w1928440:Jellyfin_BKP/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup_$(date +%Y-%m-%d).zip
+        rclone copyurl --drive-upload-cutoff 1000T https://download.vflix.xyz/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup.zip
