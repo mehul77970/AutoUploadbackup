@@ -28,11 +28,19 @@ jobs:
         team_drive = 
         EOF
 
-    - name: Upload file directly from URL to rclone mount
+    - name: Conditional Backup
       run: |
-        rclone moveto w1928440:Jellyfin_BKP/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup_$(date +%Y-%m-%d).zip
-        rclone copyurl --drive-upload-cutoff 1000T https://download.vflix.xyz/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup.zip
+        echo "Checking if the source file exists..."
+        if rclone lsf w1928440:Jellyfin_BKP/jellyfin_backup.zip; then
+          echo "File exists, proceeding with the backup."
+          rclone moveto w1928440:Jellyfin_BKP/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup_$(date +%Y-%m-%d).zip
+        else
+          echo "File not found, skipping backup step."
+        fi
 
+    - name: Upload file directly from URL
+      run: |
+        rclone copyurl https://download.vflix.xyz/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup.zip
     - name: Send Telegram notification
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
