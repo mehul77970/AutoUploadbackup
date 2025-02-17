@@ -40,7 +40,7 @@ jobs:
 
     - name: Upload file directly from URL
       run: |
-        rclone copyurl --drive-upload-cutoff 1000T https://download.vflix.xyz/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup.zip
+        rclone copyurl --drive-upload-cutoff 1000T https://download.vflix.life/jellyfin_backup.zip w1928440:Jellyfin_BKP/jellyfin_backup.zip
     - name: Send Telegram notification
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
